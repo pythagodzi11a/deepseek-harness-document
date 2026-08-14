@@ -1,0 +1,22 @@
+{
+  "name": "deepseek-harness-docs",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "scripts": {
+    "generate": "tsx scripts/generate.ts",
+    "dev": "pnpm run generate && hugo server",
+    "build": "pnpm run generate && hugo --cleanDestinationDir --minify"
+  },
+  "dependencies": {
+    "mdast-util-from-markdown": "^2.0.3",
+    "mdast-util-gfm": "^3.1.0",
+    "micromark-extension-gfm": "^3.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.22.4"
+  }
+}

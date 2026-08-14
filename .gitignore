@@ -1,0 +1,14 @@
+# Generated projection of the upstream documentation (scripts/generate.ts)
+content/
+static/
+
+# Hugo build artifacts
+public/
+resources/
+.hugo-cache/
+.go-mod-cache/
+.hugo_build.lock
+
+# Earlier manual skeleton kept for reference
+.manual-backup/
+node_modules/

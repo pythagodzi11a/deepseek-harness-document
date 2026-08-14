@@ -1,0 +1,76 @@
+# DeepSeek Harness 文档站（独立项目，Hextra 主题）。
+#
+# 内容源是上游仓库 deepseek-ai/deepseek-harness 的 docs/ 与根 README；
+# scripts/generate.ts 把发布清单（上游 website/docs.ts）投影到可再生的
+# content/ 与 static/ 目录。运行 `pnpm run generate` 后即可 `hugo server`
+# 或 `hugo --minify`。
+
+# 不设 baseURL：本地开发即根路径（http://localhost:1313/）。
+# 部署时用 --baseURL 覆盖，GitHub Actions 会按仓库名自动计算。
+title: DeepSeek Harness
+enableRobotsTXT: true
+enableGitInfo: true
+
+# 中文优先，与上游发布站点一致：zh-cn 在根路径，English 在 /en/ 下。
+# 内容文件使用语言后缀命名（.zh-cn.md / .en.md），共用一个 content 树。
+defaultContentLanguage: zh-cn
+
+languages:
+  zh-cn:
+    locale: zh-CN
+    label: 中文
+    weight: 1
+    title: DeepSeek Harness
+  en:
+    locale: en
+    label: English
+    weight: 2
+    title: DeepSeek Harness
+
+markup:
+  goldmark:
+    renderer:
+      # 上游 Markdown 带有原生 HTML（如 README 的二维码表格）。
+      unsafe: true
+
+module:
+  imports:
+    - path: github.com/imfing/hextra
+
+params:
+  description: DeepSeek Harness 文档 — 一切皆插件的开源 agent harness
+  navbar:
+    displayLogo: false
+    displayTitle: true
+  footer:
+    displayCopyright: false
+    displayPoweredBy: true
+  search:
+    enable: true
+    flexsearch:
+      # Fulltext tokenization so Chinese text is searchable by character.
+      tokenize: fulltext
+  sidebar:
+    collapseMode: menu
+  theme:
+    default: system
+    displayToggle: true
+
+menu:
+  main:
+    # 整个站点就是一份文档：Docs 指向首页。
+    - identifier: docs
+      name: Docs
+      pageRef: /
+      weight: 1
+    - identifier: search
+      name: Search
+      weight: 2
+      params:
+        type: search
+    - identifier: github
+      name: GitHub
+      url: https://github.com/deepseek-ai/deepseek-harness
+      weight: 3
+      params:
+        icon: github
