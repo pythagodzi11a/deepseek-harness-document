@@ -54,8 +54,10 @@ jobs:
 
       - name: Checkout upstream docs
         run: |
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/deepseek-ai/deepseek-harness.git upstream
-          git -C upstream sparse-checkout set --no-cone '/docs/' '/website/' '/scripts/' '/README.md' '/README.zh.md'
+                    # Full shallow clone: published pages link into arbitrary repository
+          # paths (apps/, packages/, scripts/, ...), and the projector rejects
+          # missing link targets, so sparse checkouts cannot be used.
+          git clone --depth 1 https://github.com/deepseek-ai/deepseek-harness.git upstream
           echo "Upstream revision: $(git -C upstream rev-parse HEAD)"
 
       - name: Generate site content
