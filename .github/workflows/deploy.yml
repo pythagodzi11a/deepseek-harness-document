@@ -55,7 +55,7 @@ jobs:
       - name: Checkout upstream docs
         run: |
           git clone --depth 1 --filter=blob:none --sparse https://github.com/deepseek-ai/deepseek-harness.git upstream
-          git -C upstream sparse-checkout set docs website scripts README.md README.zh.md
+          git -C upstream sparse-checkout set --no-cone '/docs/' '/website/' '/scripts/' '/README.md' '/README.zh.md'
           echo "Upstream revision: $(git -C upstream rev-parse HEAD)"
 
       - name: Generate site content
